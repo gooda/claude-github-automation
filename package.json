@@ -1,0 +1,10 @@
+{
+  "name": "claude-github-automation",
+  "version": "1.0.0",
+  "description": "Claude Code + GitHub 自动化模板",
+  "private": true,
+  "scripts": {
+    "pack": "bash scripts/pack.sh",
+    "release": "bash scripts/release.sh"
+  }
+}

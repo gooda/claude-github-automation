@@ -4,11 +4,11 @@
 
 ## 功能
 
-| 工作流 | 触发 | 功能 |
-|--------|------|------|
-| PR Review | PR 创建/更新 | 自动代码审查 |
-| Issue Triage | 新 Issue 创建 | 自动分类打标签 |
-| @claude | 评论中 @claude | 手动触发 Claude 响应 |
+| 工作流       | 触发           | 功能                 |
+| ------------ | -------------- | -------------------- |
+| PR Review    | PR 创建/更新   | 自动代码审查         |
+| Issue Triage | 新 Issue 创建  | 自动分类打标签       |
+| @claude      | 评论中 @claude | 手动触发 Claude 响应 |
 
 ## 安装方式
 
@@ -31,15 +31,7 @@ scripts/edit-issue-labels.sh → 目标项目 scripts/
 CLAUDE.md.template     → 重命名为 CLAUDE.md 并自定义
 ```
 
-### 方式三：从 GitHub Release 下载（推荐）
-
-```bash
-# 下载最新 release 并安装
-curl -sSL https://github.com/gooda/claude-github-automation/releases/latest/download/claude-github-automation.tar.gz -o claude-github-automation.tar.gz
-tar -xzf claude-github-automation.tar.gz && cd claude-github-automation-* && ./install.sh /path/to/your-project
-```
-
-### 方式四：从打包文件安装
+### 方式三：从打包文件安装
 
 ```bash
 # 解压后运行安装脚本（推荐，不会覆盖已有 CLAUDE.md）
@@ -73,13 +65,25 @@ tar -xzf claude-github-automation-*.tar.gz -C /path/to/your-project --strip-comp
 - name: Claude PR Review
   uses: anthropics/claude-code-action@v1
   env:
-    ANTHROPIC_BASE_URL: "https://your-proxy.example.com/v1"  # 或 ${{ vars.ANTHROPIC_BASE_URL }}
+    ANTHROPIC_BASE_URL: "https://your-proxy.example.com/v1" # 或 ${{ vars.ANTHROPIC_BASE_URL }}
   with:
     anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
     # ...
 ```
 
 适用场景：代理、OpenRouter、国内网关等。代理需兼容 Anthropic API 格式。
+
+## 打包与发布
+
+```bash
+# 打包（输出 dist/claude-github-automation-1.0.tar.gz）
+npm run pack
+# 或指定版本: bash scripts/pack.sh 1.1
+
+# 打包并创建 GitHub Release（需 gh 已登录）
+npm run release
+# 或指定版本: bash scripts/release.sh 1.1
+```
 
 ## 依赖
 
