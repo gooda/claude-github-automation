@@ -31,7 +31,15 @@ scripts/edit-issue-labels.sh → 目标项目 scripts/
 CLAUDE.md.template     → 重命名为 CLAUDE.md 并自定义
 ```
 
-### 方式三：从打包文件安装
+### 方式三：从 GitHub Release 下载（推荐）
+
+```bash
+# 下载最新 release 并安装
+curl -sSL https://github.com/gooda/claude-github-automation/releases/latest/download/claude-github-automation.tar.gz -o claude-github-automation.tar.gz
+tar -xzf claude-github-automation.tar.gz && cd claude-github-automation-* && ./install.sh /path/to/your-project
+```
+
+### 方式四：从打包文件安装
 
 ```bash
 # 解压后运行安装脚本（推荐，不会覆盖已有 CLAUDE.md）
