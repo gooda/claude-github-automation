@@ -1,0 +1,41 @@
+# PR 自动 Code Review
+# 触发：PR 创建、更新、重新打开时自动执行
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+      actions: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude PR Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          track_progress: true
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR: #${{ github.event.pull_request.number }}
+
+            请对此 PR 进行全面的代码审查，关注：
+
+            1. **代码质量**：可读性、可维护性、错误处理
+            2. **安全**：潜在漏洞、输入校验、鉴权逻辑
+            3. **性能**：瓶颈、资源泄漏
+            4. **测试**：覆盖率、边界情况
+            5. **文档**：注释、README 更新
+
+            使用行内评论指出具体问题，用顶层评论总结整体观察。
+          claude_args: "--max-turns 5"

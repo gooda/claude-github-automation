@@ -1,0 +1,25 @@
+# Claude Code 项目规范
+
+本文件为 Claude Code（含 GitHub Actions）提供项目上下文，用于 PR 审查、Issue 分类等自动化任务。
+
+**使用前请重命名为 `CLAUDE.md`，并根据项目实际情况补充内容。**
+
+## 项目概述
+
+<!-- 描述项目类型、主要模块、技术栈 -->
+
+## 代码规范
+
+<!-- 列出项目遵循的编码规范、目录结构、命名约定 -->
+
+## PR 审查关注点
+
+<!-- 列出 PR 审查时需特别关注的维度 -->
+
+## Issue 标签建议
+
+建议在仓库 Labels 中创建以下标签（可按需调整）：
+
+- **类型**：bug, feature, question, documentation
+- **领域**：frontend, backend, test, infra
+- **优先级**：P0, P1, P2, P3
